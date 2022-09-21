@@ -318,6 +318,7 @@ getBody(int index) {
       return Search();
     case 2:
       return const Settings();
+    default: return;
   }
 }
 
