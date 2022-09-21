@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:instagram_clone/demo1/screens/profile_screen.dart';
 import 'package:instagram_clone/demo1/screens/search.dart';
 import 'package:instagram_clone/demo1/screens/home.dart';
-import 'package:instagram_clone/demo1/screens/settings.dart';
+import 'package:instagram_clone/demo1/screens/AddPost.dart';
 import 'package:instagram_clone/demo1/screens/chats.dart';
+import 'package:instagram_clone/demo1/utils/text_utils.dart';
+import 'likes_screen.dart';
 
 class Base extends StatefulWidget {
   const Base({Key? key}) : super(key: key);
@@ -11,56 +14,11 @@ class Base extends StatefulWidget {
   State<Base> createState() => _BaseState();
 }
 class _BaseState extends State<Base> {
-  final bool _selectedItem = true;
+  //final bool _selectedItem = true;
   int _selectedIndex = 0;
   final GlobalKey<ScaffoldState> _key = GlobalKey();
+  final TextUtils _textUtils = TextUtils();
 
-  void _onArrowButtonPressed() {
-    showModalBottomSheet(
-        context: context,
-        builder: (context) {
-          return Column(
-            mainAxisSize: MainAxisSize.min,
-            children: <Widget>[
-              ListTile(
-                leading: const Icon(Icons.photo),
-                title: const Text('Photo'),
-                onTap: () {
-                  Navigator.pop(context);
-                },
-              ),
-              ListTile(
-                leading: const Icon(Icons.music_note),
-                title: const Text('Music'),
-                onTap: () {
-                  Navigator.pop(context);
-                },
-              ),
-              ListTile(
-                leading: const Icon(Icons.videocam),
-                title: const Text('Video'),
-                onTap: () {
-                  Navigator.pop(context);
-                },
-              ),
-              ListTile(
-                leading: const Icon(Icons.share),
-                title: const Text('Share'),
-                onTap: () {
-                  Navigator.pop(context);
-                },
-              ),
-              ListTile(
-                leading: const Icon(Icons.logout),
-                title: const Text('Logout'),
-                onTap: () {
-                  Navigator.pop(context);
-                },
-              ),
-            ],
-          );
-        });
-  }
   @override
   void initState() {
     // TODO: implement initState
@@ -72,54 +30,6 @@ class _BaseState extends State<Base> {
     return Scaffold(
       key: _key,
       appBar: showAppBar(),
-      // appBar: AppBar(
-      //   elevation: 0,
-      //   backgroundColor: Colors.white,
-      //   centerTitle: true,
-      //   title: const Text('INSTAGRAM',
-      //   style: TextStyle(
-      //     color: Colors.black,
-      //     fontStyle: FontStyle.italic,
-      //   ),),
-      //   actions:  <Widget>[
-      //     IconButton(onPressed: (){_onArrowButtonPressed();},
-      //         icon: const Icon(Icons.keyboard_arrow_down_outlined),
-      //     color: Colors.black,),
-      //     // Icon(
-      //     //   Icons.keyboard_arrow_down_outlined,size: 40,),
-      //     // FlatButton(
-      //     //   textColor: Colors.white,
-      //     //   onPressed: () {},
-      //     //   shape: const CircleBorder(side: BorderSide(color: Colors.transparent)),
-      //     //   child: const Text("Save"),
-      //     // ),
-      //   ],
-      //   // bottom: const TabBar(tabs: [
-      //   //   Tab(
-      //   //     text: "Chat",
-      //   //     icon: Icon(Icons.chat),
-      //   //   ),
-      //   //   Tab(
-      //   //     text: "Chat",
-      //   //     icon: Icon(Icons.chat),
-      //   //   ),
-      //   //   Tab(
-      //   //     text: "Chat",
-      //   //     icon: Icon(Icons.chat),
-      //   //   ),
-      //   // ]),
-      //   leading: InkWell(
-      //     onTap: ()
-      //     {
-      //       _key.currentState!.openDrawer();
-      //     },
-      //     child:const Icon(
-      //       Icons.message,
-      //       color: Colors.black,
-      //       size: 30,
-      //     ),
-      //   ),
-      // ),
       body: getBody(_selectedIndex),
       drawer: SafeArea(
         child: Drawer(
@@ -133,10 +43,8 @@ class _BaseState extends State<Base> {
                   accountEmail: Text('Varun816@outlook.com'),
               currentAccountPicture: CircleAvatar(radius: 35.0,
                     backgroundImage: NetworkImage('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQRsfn65KCPAM6GNJZ4ZTsJOlFyoT_5BhlmwQ&usqp=CAU'),
+                   backgroundColor: Colors.cyan,
                    child: Text("")),),
-              // ElevatedButton.icon(onPressed: (){},
-              //     icon: const Icon(Icons.arrow_downward),
-              //     label: const Text('ABCD')),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: const [
@@ -170,75 +78,6 @@ class _BaseState extends State<Base> {
                           imageUrl: 'https://images.pexels.com/photos/981588/pexels-photo-981588.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load'),
                       Chats(charName: 'Sai P', professional: 'Flutter Develpers',
                           imageUrl: 'https://images.pexels.com/photos/7715526/pexels-photo-7715526.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load'),
-                      // ListTile(
-                      //   title: const Text("Home"),
-                      //   leading: const Icon(
-                      //     Icons.home,
-                      //     size: 20,
-                      //   ),
-                      //   selected: _selectedItem,
-                      //   // selectedColor: Colors.orange,
-                      //   // selectedTileColor: Colors.orange.shade200,
-                      //   onTap: () {
-                      //     setState(() {
-                      //       _selectedIndex = 0;
-                      //     });
-                      //     _key.currentState!.closeDrawer();
-                      //     //  Navigator.pop(context);
-                      //   },
-                      // ),
-                      // ListTile(
-                      //   title: const Text("Profile"),
-                      //   leading: const Icon(
-                      //     Icons.man,
-                      //     size: 20,
-                      //   ),
-                      //   onTap: () {
-                      //     setState(() {
-                      //       _selectedIndex = 1;
-                      //     });
-                      //     Navigator.pop(context);
-                      //   },
-                      // ),
-                      // ListTile(
-                      //   title: const Text("Settings"),
-                      //   leading: const Icon(
-                      //     Icons.settings,
-                      //     size: 20,
-                      //   ),
-                      //   onTap: () {
-                      //     setState(() {
-                      //       _selectedIndex = 2;
-                      //     });
-                      //     Navigator.pop(context);
-                      //   },
-                      // ),
-                      // ListTile(
-                      //   title: const Text("Help"),
-                      //   leading: const Icon(
-                      //     Icons.help,
-                      //     size: 20,
-                      //   ),
-                      //   onTap: () {
-                      //     setState(() {
-                      //       _selectedIndex = 3;
-                      //     });
-                      //     Navigator.pop(context);
-                      //   },
-                      // ),
-                      // ListTile(
-                      //   title: const Text("Logout"),
-                      //   leading: const Icon(
-                      //     Icons.logout,
-                      //     size: 20,
-                      //   ),
-                      //   onTap: () {
-                      //     setState(() {
-                      //       _selectedIndex = 4;
-                      //     });
-                      //     Navigator.pop(context);
-                      //   },
-                      // ),
                     ],
                   ),
                 ),
@@ -252,7 +91,7 @@ class _BaseState extends State<Base> {
         unselectedItemColor: Colors.black,
         // unselectedLabelStyle: const TextStyle(color: Colors.black),
         currentIndex: _selectedIndex,
-        fixedColor: Colors.teal,
+        fixedColor: Colors.black,
         items: const [
           BottomNavigationBarItem(
             label: "Home",
@@ -264,7 +103,7 @@ class _BaseState extends State<Base> {
           ),
           BottomNavigationBarItem(
             label: "Videos",
-            icon: Icon(Icons.personal_video_rounded),
+            icon: Icon(Icons.add),
           ),
           BottomNavigationBarItem(
             label: "Favorite",
@@ -272,7 +111,7 @@ class _BaseState extends State<Base> {
           ),
           BottomNavigationBarItem(
             label: "Profile",
-            icon: Icon(Icons.man),
+            icon: Icon(Icons.person_add),
           ),
         ],
         onTap: (int index) {
@@ -288,12 +127,14 @@ class _BaseState extends State<Base> {
     switch (_selectedIndex){
       case 0:
         return AppBar(
+          automaticallyImplyLeading: false,
           backgroundColor: Colors.white,
           elevation: 0.0,
           title: const Text(
             "INSTAGRAM",
             style: TextStyle(
               fontFamily: 'FontSpring',fontSize: 26,
+              letterSpacing: 3,
               color: Colors.black,
             ),
           ),
@@ -307,6 +148,45 @@ class _BaseState extends State<Base> {
             ),
           ],
         );
+      case 1:
+      case 2:
+        return AppBar(
+          backgroundColor: Colors.white,
+        );
+      case 3:
+        return AppBar(
+          toolbarHeight: 0.0,
+          backgroundColor: Colors.black,
+        );
+      case 4:
+        return AppBar(
+          automaticallyImplyLeading: false,
+          backgroundColor: Colors.white,
+          title: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Row(
+                children: [
+                  const Icon(Icons.lock_outline_rounded,color: Colors.black,),
+                  const SizedBox(width: 5,),
+                  _textUtils.bold18('Ana',Colors.black),
+                  const Icon(Icons.keyboard_arrow_down,color: Colors.black,),
+                ],
+              ),
+              Row(
+                children: [
+                  Image.asset('assets/icons/add_post.png',width: 20,height: 20,color: Colors.black,),
+                  const SizedBox(width: 15,),
+                  const Icon(Icons.menu,color: Colors.black,)
+                ],
+              )
+            ],
+          ),
+        );
+      default:
+        return AppBar(
+          toolbarHeight: 0.0,
+        );
     }
   }
   }
@@ -315,37 +195,14 @@ getBody(int index) {
     case 0:
       return const Home();
     case 1:
-      return Search();
+      return const Search();
     case 2:
-      return const Settings();
+      return const AddPost();
+    case 3:
+      return const LikesScreen();
+    case 4:
+      return const Profile();
     default: return;
   }
 }
 
-//optional
-// Container(
-// padding: const EdgeInsets.only(left: 10, top:50 ),
-// height: 130,
-// width: double.infinity,
-// color: Colors.blue,
-// child:Row(
-// children: const [
-// SizedBox(
-// height: 80,
-// ),
-// CircleAvatar(
-// radius: 35.0,
-// backgroundImage: NetworkImage('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR_jhEBJCfxdfT55VROVcvkqhUr9WI1oNOJYA&usqp=CAU'),
-// //child: Text("AH"),
-// ),
-// SizedBox(
-// width: 10,
-// ),
-// Text("Angela",
-// style: TextStyle(
-// fontWeight: FontWeight.bold,
-// fontSize: 20.0,
-// ),)
-// ],
-// ),
-// ),

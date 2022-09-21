@@ -32,7 +32,7 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                       children: [
                         const StoryViewWidget(),
                         const SizedBox(height: 10,),
-                        _textUtils.normal14Ellipsis('proglabsoffical', Colors.white),
+                        _textUtils.normal14Ellipsis('Annnnnnnaaaa', Colors.black),
                       ],
                     ),
                   ),

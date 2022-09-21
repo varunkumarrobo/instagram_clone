@@ -14,7 +14,7 @@ class Chats extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      elevation: 8,
+      elevation: 0.0,
       margin: const EdgeInsets.fromLTRB(20,5,20,10),
       color: Colors.white,
       child: SizedBox(
@@ -35,26 +35,27 @@ class Chats extends StatelessWidget {
             Expanded(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
                     '$charName',
                     style: const TextStyle(
-                      fontSize: 25,
-                      fontWeight: FontWeight.bold,
+                      fontSize: 20,
+                      fontWeight: FontWeight.normal,
                     ),
                   ),
                   const SizedBox(
                     height: 5,
                   ),
-                  Text(
-                    '$professional',
-                    style: const TextStyle(
-                        fontWeight: FontWeight.bold, color: Colors.black54),
-                  ),
+                  // Text(
+                  //   '$professional',
+                  //   style: const TextStyle(
+                  //       fontWeight: FontWeight.bold, color: Colors.black54),
+                  // ),
                 ],
               ),
             ),
-            const SizedBox(width: 25, child: Icon(Icons.call),),
+            const SizedBox(width: 25, child: Icon(Icons.camera_alt_rounded),),
             const SizedBox(width: 15,)
           ],
         ),

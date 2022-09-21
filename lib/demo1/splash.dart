@@ -8,12 +8,6 @@ import 'package:instagram_clone/demo1/screens/base.dart';
 import 'forgot.dart';
 
 void main() {
-  // SystemChrome.setSystemUIOverlayStyle(
-  //   const SystemUiOverlayStyle(
-  //     statusBarColor: Colors.transparent,
-  //   ),
-  // );
-  //debugShowCheckedModeBanner: false
   runApp(const MyApp());
 }
 
@@ -24,14 +18,15 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     // TODO: implement build
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: "Flutter",
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
       home: AnimatedSplashScreen(
           duration: 3000,
-          splash: Image.network('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQEIkM3_PbWOhe9JMqtyLQ3CVE7KUk-Oh3Vgg&usqp=CAU',
-          fit: BoxFit.fitHeight,),
+          splash: Image.network('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQEIkM3_PbWOhe9JMqtyLQ3CVE7KUk-Oh3Vgg&usqp=CAU',),
+          splashIconSize: double.infinity,
           nextScreen: const MyHomePage(
             title: 'My Home page',
           ),
@@ -73,9 +68,19 @@ class _MyHomePageState extends State<MyHomePage> {
             height: 100,
             width: double.infinity,
             decoration:  const BoxDecoration(
-              image: DecorationImage(
-                image: NetworkImage('https://images.unsplash.com/photo-1564564295391-7f24f26f568b'),
-                //AssetImage("assets/images/down1.png"),
+              // image: DecorationImage(
+              //   image: NetworkImage('https://images.unsplash.com/photo-1564564295391-7f24f26f568b'),
+              //   //AssetImage("assets/images/down1.png"),
+              // ),
+            ),
+            child: const Center(
+              child: Text(
+                "INSTAGRAM",
+                style: TextStyle(
+                  fontFamily: 'FontSpring',fontSize: 36,
+                  letterSpacing: 3,
+                  color: Colors.black,
+                ),
               ),
             ),
           ),
@@ -166,22 +171,6 @@ class _MyHomePageState extends State<MyHomePage> {
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    // GestureDetector(
-                    //   child: Text(
-                    //     'Sign up',
-                    //     style: TextStyle(
-                    //       fontWeight: FontWeight.bold,
-                    //       color: Colors.indigo.shade300,
-                    //     ),
-                    //   ),
-                    //   onTap: () {
-                    //     Navigator.of(context).push(
-                    //       MaterialPageRoute(
-                    //         builder: (context) =>  Home(),
-                    //       ),
-                    //     );
-                    //   },
-                    // )
                   ],
                 ),
                 const SizedBox(height: 20),
@@ -262,7 +251,8 @@ class _MyHomePageState extends State<MyHomePage> {
                         height: 1,
                           fontStyle: FontStyle.italic,
                           fontWeight: FontWeight.w900,
-                          fontSize: 60),
+                          fontSize: 50,
+                      color: Color(0xFFFF4081)),
                     ),),
                   ],
                 ),

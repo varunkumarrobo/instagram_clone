@@ -119,35 +119,9 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                   _formKey.currentState!.validate();
                   if (_formKey.currentState!.validate()) {
                     print('Account Created');
-                    // _formkey.currentState!.save();
-                    // _formkey.currentState!.reset();
-                    // Navigator.pushNamed(context, MyRoutes.homeRoute);
-                    //setState(() {});
                   }
                 }),
                 child: const Text('Create Account')),
-            // Row(
-            //   crossAxisAlignment: CrossAxisAlignment.center,
-            //   mainAxisAlignment: MainAxisAlignment.center,
-            //   children: [
-            //     const Text('Already got an account?'),
-            //     ElevatedButton(
-            //         style: TextButton.styleFrom(
-            //             elevation: 0, backgroundColor: Colors.grey.shade100),
-            //         onPressed: () {
-            //           Navigator.of(context).pop(
-            //             MaterialPageRoute(
-            //               builder: (context) => const MyHomePage(title: 'AAA'),
-            //             ),
-            //           );
-            //         },
-            //         child: Text('Log in',
-            //             style: TextStyle(
-            //                 color: Colors.indigo.shade300,
-            //                 fontWeight: FontWeight.bold,
-            //                 fontStyle: FontStyle.normal))),
-            //   ],
-            // )
           ]),
         ),
       ),);

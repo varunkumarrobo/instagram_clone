@@ -34,7 +34,7 @@ class _PostViewWidgetState extends State<PostViewWidget> {
                     const SizedBox(
                       width: 10,
                     ),
-                    _textUtils.bold16('VarunKumar', Colors.white),
+                    _textUtils.bold16('Ana', Colors.black),
                   ],
                 ),
                 const Icon(
@@ -61,7 +61,7 @@ class _PostViewWidgetState extends State<PostViewWidget> {
                   children: [
                     Image.asset(
                       'assets/icons/like.png',
-                      color: Colors.white,
+                      color: Colors.black,
                       width: 25,
                       height: 25,
                     ),
@@ -69,14 +69,14 @@ class _PostViewWidgetState extends State<PostViewWidget> {
                       padding: const EdgeInsets.only(left: 15, right: 15),
                       child: Image.asset(
                         'assets/icons/comment.png',
-                        color: Colors.white,
+                        color: Colors.black,
                         width: 25,
                         height: 25,
                       ),
                     ),
                     Image.asset(
                       'assets/icons/share.png',
-                      color: Colors.white,
+                      color: Colors.black,
                       width: 25,
                       height: 25,
                     ),
@@ -84,7 +84,7 @@ class _PostViewWidgetState extends State<PostViewWidget> {
                 ),
                 Image.asset(
                   'assets/icons/save.png',
-                  color: Colors.white,
+                  color: Colors.black,
                   width: 25,
                   height: 25,
                 ),
@@ -96,13 +96,13 @@ class _PostViewWidgetState extends State<PostViewWidget> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              _textUtils.bold14('4,154 views',Colors.white),
+              _textUtils.bold14('4,154 views',Colors.black),
               const SizedBox(height: 5,),
               Row(
                 children: [
-                  _textUtils.bold14('VarunKumar',Colors.white),
-                  const SizedBox(height: 5,),
-                  _textUtils.normal14("Hi, this is my first post",Colors.white)
+                  _textUtils.bold14('Ana',Colors.black),
+                  const SizedBox(width: 5,),
+                  _textUtils.normal14("Hi, this is my first post",Colors.black)
                 ],
               ),
               const SizedBox(height: 5,),
@@ -112,7 +112,7 @@ class _PostViewWidgetState extends State<PostViewWidget> {
                 children: [
                   _textUtils.normal11('12 mintues ago', Colors.grey),
                   const SizedBox(width: 5,),
-                  _textUtils.normal11('See Translation',Colors.white),
+                  _textUtils.normal11('See Translation',Colors.black),
                 ],
               )
             ],
