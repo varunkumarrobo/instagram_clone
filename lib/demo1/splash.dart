@@ -20,9 +20,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: "Flutter",
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
+      theme: ThemeData.light(),
       home: AnimatedSplashScreen(
           duration: 3000,
           splash: Image.network('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQEIkM3_PbWOhe9JMqtyLQ3CVE7KUk-Oh3Vgg&usqp=CAU',),
@@ -67,12 +65,12 @@ class _MyHomePageState extends State<MyHomePage> {
             margin: const EdgeInsets.symmetric(vertical: 80.0),
             height: 100,
             width: double.infinity,
-            decoration:  const BoxDecoration(
-              // image: DecorationImage(
-              //   image: NetworkImage('https://images.unsplash.com/photo-1564564295391-7f24f26f568b'),
-              //   //AssetImage("assets/images/down1.png"),
-              // ),
-            ),
+            // decoration:  const BoxDecoration(
+            //   // image: DecorationImage(
+            //   //   image: NetworkImage('https://images.unsplash.com/photo-1564564295391-7f24f26f568b'),
+            //   //   //AssetImage("assets/images/down1.png"),
+            //   // ),
+            // ),
             child: const Center(
               child: Text(
                 "INSTAGRAM",

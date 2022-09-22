@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:instagram_clone/demo1/screens/chats1.dart';
 import 'package:instagram_clone/demo1/screens/profile_screen.dart';
 import 'package:instagram_clone/demo1/screens/search.dart';
 import 'package:instagram_clone/demo1/screens/home.dart';
@@ -31,61 +32,64 @@ class _BaseState extends State<Base> {
       key: _key,
       appBar: showAppBar(),
       body: getBody(_selectedIndex),
-      drawer: SafeArea(
+      drawer:_selectedIndex == 0 ? SafeArea(
         child: Drawer(
+          backgroundColor: Colors.white,
           width: double.infinity,
           // elevation: 16.0,
           child: ListView(
             // crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const UserAccountsDrawerHeader(
-                  accountName: Text('Varun Kumar'),
-                  accountEmail: Text('Varun816@outlook.com'),
-              currentAccountPicture: CircleAvatar(radius: 35.0,
-                    backgroundImage: NetworkImage('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQRsfn65KCPAM6GNJZ4ZTsJOlFyoT_5BhlmwQ&usqp=CAU'),
-                   backgroundColor: Colors.cyan,
-                   child: Text("")),),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: const [
-                Text('CHATS',
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 20,
-                ),),
-              ],),
-              SingleChildScrollView(
-                child: SizedBox(
-                  width: double.infinity,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: const [
-                      Chats(charName: 'Mahesh S', professional: 'Flutter Develpers',
-                          imageUrl: 'https://images.pexels.com/photos/7465582/pexels-photo-7465582.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load'),
-                      Chats(charName: 'Ashlesh', professional: 'Flutter Develpers',
-                          imageUrl: 'https://images.pexels.com/photos/1049622/pexels-photo-1049622.jpeg?auto=compress&cs=tinysrgb&w=400'),
-                      Chats(charName: 'Ankitha S', professional: 'Flutter Develpers',
-                          imageUrl: 'https://images.pexels.com/photos/932263/pexels-photo-932263.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load'),
-                      Chats(charName: 'Ankitha R', professional: 'Flutter Develpers',
-                          imageUrl: 'https://images.pexels.com/photos/932261/pexels-photo-932261.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load'),
-                      Chats(charName: 'Rithika', professional: 'Flutter Develpers',
-                          imageUrl: 'https://images.pexels.com/photos/368736/pexels-photo-368736.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load'),
-                      Chats(charName: 'Varun', professional: 'Flutter Develpers',
-                          imageUrl: 'https://images.pexels.com/photos/10319442/pexels-photo-10319442.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load'),
-                      Chats(charName: 'Bhargav', professional: 'Flutter Develpers',
-                          imageUrl: 'https://www.shutterstock.com/image-photo/davangere-karnataka-india-july-23-600w-2186723661.jpg'),
-                      Chats(charName: 'Vishwa', professional: 'Flutter Develpers',
-                          imageUrl: 'https://images.pexels.com/photos/981588/pexels-photo-981588.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load'),
-                      Chats(charName: 'Sai P', professional: 'Flutter Develpers',
-                          imageUrl: 'https://images.pexels.com/photos/7715526/pexels-photo-7715526.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load'),
-                    ],
-                  ),
+            children: const [
+              UserAccountsDrawerHeader(
+                decoration: BoxDecoration(
+                  color: Colors.white,
                 ),
-              )
+                accountName: Text('Varun Kumar',style: TextStyle(color: Colors.black),),
+                accountEmail: Text('Varun816@outlook.com',style: TextStyle(color: Colors.black),),
+                currentAccountPicture: CircleAvatar(radius: 35.0,
+                    backgroundImage: NetworkImage('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQRsfn65KCPAM6GNJZ4ZTsJOlFyoT_5BhlmwQ&usqp=CAU'),
+                    child: Text("")),),
+              // Row(
+              //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              //   children: const [
+              //     Text('CHATS',
+              //       style: TextStyle(
+              //         fontWeight: FontWeight.bold,
+              //         fontSize: 20,
+              //       ),),
+              //   ],),
+              // SingleChildScrollView(
+              //   child: SizedBox(
+              //     width: double.infinity,
+              //     child: Column(
+              //       crossAxisAlignment: CrossAxisAlignment.start,
+              //       children: const [
+              //         Chats(charName: 'Mahesh S', professional: 'Flutter Develpers',
+              //             imageUrl: 'https://images.pexels.com/photos/7465582/pexels-photo-7465582.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load'),
+              //         Chats(charName: 'Ashlesh', professional: 'Flutter Develpers',
+              //             imageUrl: 'https://images.pexels.com/photos/1049622/pexels-photo-1049622.jpeg?auto=compress&cs=tinysrgb&w=400'),
+              //         Chats(charName: 'Ankitha S', professional: 'Flutter Develpers',
+              //             imageUrl: 'https://images.pexels.com/photos/932263/pexels-photo-932263.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load'),
+              //         Chats(charName: 'Ankitha R', professional: 'Flutter Develpers',
+              //             imageUrl: 'https://images.pexels.com/photos/932261/pexels-photo-932261.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load'),
+              //         Chats(charName: 'Rithika', professional: 'Flutter Develpers',
+              //             imageUrl: 'https://images.pexels.com/photos/368736/pexels-photo-368736.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load'),
+              //         Chats(charName: 'Varun', professional: 'Flutter Develpers',
+              //             imageUrl: 'https://images.pexels.com/photos/10319442/pexels-photo-10319442.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load'),
+              //         Chats(charName: 'Bhargav', professional: 'Flutter Develpers',
+              //             imageUrl: 'https://www.shutterstock.com/image-photo/davangere-karnataka-india-july-23-600w-2186723661.jpg'),
+              //         Chats(charName: 'Vishwa', professional: 'Flutter Develpers',
+              //             imageUrl: 'https://images.pexels.com/photos/981588/pexels-photo-981588.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load'),
+              //         Chats(charName: 'Sai P', professional: 'Flutter Develpers',
+              //             imageUrl: 'https://images.pexels.com/photos/7715526/pexels-photo-7715526.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load'),
+              //       ],
+              //     ),
+              //   ),
+              // )
             ],
           ),
         ),
-      ),
+      ) : null,
       bottomNavigationBar: BottomNavigationBar(
         // showUnselectedLabels: true,
         unselectedItemColor: Colors.black,
@@ -139,24 +143,54 @@ class _BaseState extends State<Base> {
             ),
           ),
           actions: [
-            Padding(padding: const EdgeInsets.only(right: 10),
-            child: Image.asset("assets/icons/messenger.png",
-            color: Colors.black,
-            width: 25,
-            height: 25,
+            Padding(
+              padding: const EdgeInsets.only(right: 10),
+              child: InkWell(onTap: () {
+                Navigator.push(context, MaterialPageRoute(
+                    builder: (BuildContext context) => const ChatsS()));
+              }, // Image tapped
+                splashColor: Colors.black, // Splash color over image
+                child: Ink.image(
+                  //fit: BoxFit., // Fixes border issues
+                  width: 30,
+                  height: 30,
+                  image: const AssetImage(
+                      'assets/icons/messenger.png',
+                    // color: Colors.black,
+                    // width: 25,
+                    // height: 25,
+                  ),
+                ),),
             ),
-            ),
+            // Padding(padding: const EdgeInsets.only(right: 10),
+            // child: Image.asset("assets/icons/messenger.png",
+            //   color: Colors.black,
+            //   width: 25,
+            //   height: 25,
+            //
+            // ),
+            // ),
+            // RaisedButton(onPressed: () {
+            //   //print('centrebutton');
+            //   Navigator.push(context, MaterialPageRoute(
+            //       builder: (BuildContext context) => const ChatsS()));
+            // },)
           ],
         );
       case 1:
+        return AppBar(
+          backgroundColor: Colors.white,
+          toolbarHeight: 0.0,
+        );
       case 2:
         return AppBar(
+          toolbarHeight: 0.0,
           backgroundColor: Colors.white,
         );
       case 3:
         return AppBar(
           toolbarHeight: 0.0,
-          backgroundColor: Colors.black,
+          backgroundColor: Colors.white,
         );
       case 4:
         return AppBar(
@@ -179,7 +213,7 @@ class _BaseState extends State<Base> {
                   const SizedBox(width: 15,),
                   const Icon(Icons.menu,color: Colors.black,)
                 ],
-              )
+              ),
             ],
           ),
         );
@@ -195,7 +229,7 @@ getBody(int index) {
     case 0:
       return const Home();
     case 1:
-      return const Search();
+      return const SearchScreen();
     case 2:
       return const AddPost();
     case 3:
