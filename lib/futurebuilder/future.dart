@@ -1,101 +1,85 @@
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
+import 'dart:async';
 
-
-void main() => runApp(const MyApp());
-
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'future demo',
-      home: FutureBuilderexample(),
-      debugShowCheckedModeBanner: false,
-    );
+Future<Album> fetchAlbum() async {
+  final response =
+      await http.get(Uri.parse('https://jsonplaceholder.typicode.com/albums/1'));
+  if (response.statusCode == 200) {
+    return Album.fromJson(jsonDecode(response.body));
+  } else {
+    throw Exception('Failed to load album');
   }
 }
-Future<String> getValue() async{
-  await Future.delayed(const Duration(seconds:10 ));
-  return 'Varun';
-}
-class FutureBuilderexample extends StatefulWidget {
-  //const FutureBuilderexample({Key? key}) : super(key: key);
+class Album{
+  final int? userId;
+  final int? id;
+  final String title;
 
+  const Album({
+    required this.userId,required this.id,required this.title,
+  });
+  factory Album.fromJson(Map<String, dynamic> json){
+    return Album(
+      userId: json['userID'],
+      id: json['id'],
+      title: json['title'],);
+  }
+}
+void main() => runApp(const MyApp());
+
+class MyApp extends StatefulWidget {
+  const MyApp({Key? key}) : super(key: key);
   @override
-  State<FutureBuilderexample> createState() => _FutureBuilderexampleState();
+  State<MyApp> createState() => _MyAppState();
 }
 
-class _FutureBuilderexampleState extends State<FutureBuilderexample> {
-  late Future<String> _value;
+Future<Album> futureAlbum() async {
+  await Future.delayed(const Duration(seconds: 6));
+  return futureAlbum();
+}
+
+class _MyAppState extends State<MyApp> {
+  late Future<Album> futureAlbum;
+
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    _value = getValue();
+    futureAlbum = fetchAlbum();
   }
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Users'),
+    return MaterialApp(
+      title: 'Users',
+      theme: ThemeData(
+        primarySwatch: Colors.lightBlue,
       ),
-      body: SizedBox(
-        width: double.infinity,
-        child: Center(
-          child: FutureBuilder<String>(
-            future: _value,
-              initialData: 'Loading',
-              builder: (
-              BuildContext context,
-                  AsyncSnapshot<String> snapshot,
-              ){
-              if(snapshot.connectionState == ConnectionState.waiting){
-                return Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    const CircularProgressIndicator(),
-                    Visibility(
-                      visible: snapshot.hasData,
-                        child:  Text(
-                          snapshot.data.toString(),
-                          style: const TextStyle(
-                            color: Colors.black,
-                            fontSize: 24,
-                          ),
-                        ),
-                    ),
-                  ],
-                );
-              }else if(snapshot.connectionState == ConnectionState.done){
-                if(snapshot.hasError){
-                  return const Text('Error');
-                }else if(snapshot.hasData){
-                  return Text(
-                    snapshot.data.toString(),
-                    style: const TextStyle(
-                      color: Colors.teal,
-                      fontSize: 36,
-                    ),
-                  );
-                }else{
-                  return const Text('Empty data');
-                }
-              } else{
-                return Text('State: ${snapshot.connectionState}');
+      home: Scaffold(
+        appBar: AppBar(
+          title: const Text('Users'),
+          centerTitle: true,
+        ),
+        body: Center(
+          child: FutureBuilder<Album>(
+            future: futureAlbum,
+            //initialData: ,
+            builder: (context, snapshot) {
+              if (snapshot.hasData) {
+                return Text('${snapshot.data!.id} = ${snapshot.data!.title}');
+              } else if (snapshot.hasError) {
+                return Text('${snapshot.error}');
               }
-              }),
+              return const CircularProgressIndicator();
+            },
+          ),
         ),
       ),
     );
   }
-
 }
-
-
-
-
 
 //
 // import 'package:flutter/material.dart';
@@ -128,8 +112,9 @@ class _FutureBuilderexampleState extends State<FutureBuilderexample> {
 //  // String url = "http://www.json-generator.com/api/json/get/cfwZmvEBbC?indent=2";
 //
 //   Future<List<User>> _getUsers() async {
-//     var data = await http.get(Uri.https('https://jsonplaceholder.typicode.com/todos/1'));
-//     var jsonData = json.decode(data.body);
+//     final response = await http
+//         .get(Uri.parse('https://jsonplaceholder.typicode.com/albums/'));
+//     var jsonData = json.decode(response.body);
 //     List<User> users = [];
 //     for (var u in jsonData){
 //       User user = User(u['index'], u['about'], u['name'],
@@ -155,7 +140,7 @@ class _FutureBuilderexampleState extends State<FutureBuilderexample> {
 //             if(snapshot.data == null){
 //               return Container(
 //                 child: const Center(
-//                   child: Text('Loading'),
+//                   child: Text('Loading...'),
 //                 ),
 //               );
 //             }else{
@@ -172,6 +157,21 @@ class _FutureBuilderexampleState extends State<FutureBuilderexample> {
 //     );
 //   }
 // }
+// class DetailPage extends StatelessWidget {
+//
+//   final User user;
+//
+//   DetailPage(this.user);
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//         appBar: AppBar(
+//           title: Text(user.name),
+//         )
+//     );
+//   }
+// }
 // class User{
 //   final int index;
 //   final String about;
@@ -181,5 +181,5 @@ class _FutureBuilderexampleState extends State<FutureBuilderexample> {
 //
 //   User(this.index,this.about,this.name,this.email,this.picture);
 // }
-//
-//
+
+
